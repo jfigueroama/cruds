@@ -1,0 +1,58 @@
+/* CSS simplificado para uso de Computación */
+#titulo	{ width: 520px; height: 40px; position: relative; z-index: 400; left: 192px; top: 90px;
+	text-align: center; font-size: 20pt; font-family: Times,serif;
+	color: #9f0000; text-shadow: 0.12em 0.04em #BBB;  }
+
+.zcen {	background-color: white; border: 0px; margin:0; }
+#ztprin	{ border-spacing: 0px; margin: auto; }
+.zmenuh { background: #291801; font-size: 11px; padding: 5px; margin-left: -1px; margin-right: -1px;}
+#zm1	{ border-bottom: #877238 solid 15px; }
+#zm2	{ border-top: #877238 solid 15px; text-align: right; }
+.zmenuh a { color: #FF9; text-decoration: none; padding: 5px 11px; line-height: 200%; white-space: nowrap; }
+.zmenuh a:hover {background: #877238; color:#fff;}
+
+body	{font-size: 12px; font-family: Arial, Helvetica, sans-serif; text-align: left;
+	margin-top: 0; margin-bottom: 0;
+	background-color: #9C5811; }
+p	{ padding: 0; margin: 20px; text-align: justify; text-decoration: none; }
+a	{ text-decoration: none; }
+h2	{ padding-top: 10px; bborder-collapse: separate; border-spacing: 2px;
+		border-top: #DDD solid 2px; margin-left: 0px;}
+		
+.irinicio a{
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #877238;
+	text-decoration: none;
+	padding:6px 5px 6px 0;
+}
+/* estas especificaciones produce los degradados a los lados */
+.zder { 
+	background-image: linear-gradient(left , rgb(41,24,1) 0%, rgb(156,89,17) 73%);
+	background-image: -o-linear-gradient(left , rgb(41,24,1) 0%, rgb(156,89,17) 73%);
+	background-image: -moz-linear-gradient(left , rgb(41,24,1) 0%, rgb(156,89,17) 73%);
+	background-image: -webkit-linear-gradient(left , rgb(41,24,1) 0%, rgb(156,89,17) 73%);
+	background-image: -ms-linear-gradient(left , rgb(41,24,1) 0%, rgb(156,89,17) 73%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		right bottom,
+		color-stop(0, rgb(41,24,1)),
+		color-stop(0.73, rgb(156,89,17))
+);}
+
+.zizq {
+	background-image: linear-gradient(right , rgb(41,24,1) 0%, rgb(156,89,17) 73%);
+	background-image: -o-linear-gradient(right , rgb(41,24,1) 0%, rgb(156,89,17) 73%);
+	background-image: -moz-linear-gradient(right , rgb(41,24,1) 0%, rgb(156,89,17) 73%);
+	background-image: -webkit-linear-gradient(right , rgb(41,24,1) 0%, rgb(156,89,17) 73%);
+	background-image: -ms-linear-gradient(right , rgb(41,24,1) 0%, rgb(156,89,17) 73%);
+
+	background-image: -webkit-gradient(
+		linear,
+		right bottom,
+		left bottom,
+		color-stop(0, rgb(41,24,1)),
+		color-stop(0.73, rgb(156,89,17))
+);}
