@@ -3,12 +3,30 @@ class Sitio extends ActiveRecord\Model{
     static $table_name = 'sitio';
 
     static $has_many = array(
- //       array('carreras', 'class_name' => 'Carrera'),
-  //      array('profesores', 'class_name' => 'Profesor')
+        array('sitiotgenerales', 'class_name' => 'Sitiotgeneral'),
+        array('tgenerales',
+            'class_name' => 'Tgeneral',
+            'through' => 'sitiotgenerales',
+            'fname' => 'Tipo General',
+            'erasable_values' => '_tgenerales_values'),
+        array('sitiotespecificos', 'class_name' => 'Sitiotespecifico'),
+        array('tespecificos',
+            'class_name' => 'Tespecifico',
+            'through' => 'sitiotespecificos',
+            'fname' => 'Tipo Espec&iacute;fico',
+            'erasable_values' => '_tespecificos_values'),
+        array('sitiopersonas', 'class_name' => 'Sitiopersona'),
+        array('personas',
+            'class_name' => 'Persona',
+            'through' => 'sitiopersonas',
+            'fname' => 'Personas',
+            'erasable_values' => '_personas_values')
+
     );
 
     static $belongs_to = array(
- //       array('institucion')
+        array('region'),
+        array('ciudad')
     );
 
     static $validates_presence_of = array(
@@ -93,7 +111,7 @@ class Sitio extends ActiveRecord\Model{
     );
 
     static function _region_id_values(){
-        return values_from_class('Ciudad');
+        return values_from_class('Region');
     }
 
     static function _ciudad_id_values(){
@@ -105,30 +123,38 @@ class Sitio extends ActiveRecord\Model{
     }
 
 
-    /**
-     * Valida si se puede borrar esta instancia checando sus relaciones de
-     * integridad referencias en los $has_many.
-     * 
-     * Deberia de ejecutarse en una transaccion.
-     * Retorna true o false.
-     */
-    /*
-    function _erasable(){
-        $borrable = true;
-        $profesores = count($this->profesores);
-        $carreras = count($this->carreras);
+    function _tespecificos_values(){
+        $vals = array();
+        $pcs = $this->sitiotespecificos;
 
-        if ($profesores > 0 ||
-            $carreras > 0)
-            $borrable = false;
-
-
-        return $borrable;
-    }*/
-
-    /*
-    static function _tipo_values(){
+        foreach ($pcs as $pc){
+            $vals[] = array($pc->id, $pc->tespecifico->_name);
+        }
+        return $vals;
     }
-     */
+
+    function _tgenerales_values(){
+        $vals = array();
+        $pcs = $this->sitiotgenerales;
+
+        foreach ($pcs as $pc){
+            $vals[] = array($pc->id, $pc->tgeneral->_name);
+        }
+        return $vals;
+    }
+
+
+    function _personas_values(){
+        $vals = array();
+        $pcs = $this->sitiopersonas;
+
+        foreach ($pcs as $pc){
+            $vals[] = array($pc->id, $pc->persona->_name);
+        }
+        return $vals;
+    }
+
+
+
 }
 ?>

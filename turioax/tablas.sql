@@ -112,7 +112,7 @@ CREATE TABLE horario (
     FOREIGN KEY (temporada_id) REFERENCES temporada(id)
         ON UPDATE CASCADE ON DELETE CASCADE,
 
-    dia varchar(1),
+    dias varchar(20),
     horas varchar(50));
 
 

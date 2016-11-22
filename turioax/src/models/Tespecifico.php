@@ -1,9 +1,9 @@
 <?php
-<?php
 class Tespecifico extends ActiveRecord\Model{
     static $table_name = 'tespecifico';
 
     static $has_many = array(
+        array('sitiotespecificos', 'class_name' => 'Sitiotespecifico')
     );
 
     static $belongs_to = array(

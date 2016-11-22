@@ -1,12 +1,9 @@
 <?php
-class Tgeneral extends ActiveRecord\Model{
-    static $table_name = 'tgeneral';
+class Persona extends ActiveRecord\Model{
+    static $table_name = 'persona';
 
     static $has_many = array(
-        array('sitiotgenerales', 'class_name' => 'Sitiotgeneral')
-    );
-
-    static $belongs_to = array(
+        array('sitiopersonas', 'class_name' => 'Sitiopersona')
     );
 
     static $validates_presence_of = array(
@@ -17,6 +14,7 @@ class Tgeneral extends ActiveRecord\Model{
     );
 
     static $order = array('nombre');
+    // Fields metadata
     static $meta = array(
         'nombre' => array(
             'autofocus' => true,
@@ -30,4 +28,3 @@ class Tgeneral extends ActiveRecord\Model{
 
 }
 ?>
-
