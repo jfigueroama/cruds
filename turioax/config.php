@@ -14,10 +14,10 @@ define('CA_VW_PATH', CA_PATH.'src'.DS.'views'.DS);  // views
 define('CA_RT_PATH', CA_PATH.'src'.DS.'routes'.DS);  // routes
 define('CA_HP_PATH', CA_PATH.'src'.DS.'helpers'.DS);  // helpers
 
-define('CA_URL_BASE', 'http://'.$_SERVER['SERVER_NAME'].'/ca/shp/');
-define('CA_URL', 'http://'.$_SERVER['SERVER_NAME'].'/ca/shp/');
+define('CA_URL_BASE', 'http://'.$_SERVER['SERVER_NAME'].'/cruds/turioax/');
+define('CA_URL', 'http://'.$_SERVER['SERVER_NAME'].'/cruds/turioax/');
 
-define('SESSION_NAME', 'ca_computacion');
+define('SESSION_NAME', 'turioax');
 define('PASS_DIGEST_FN', 'sha1');
 
 //define('CA_LOG_FILE', '');
@@ -61,7 +61,7 @@ require_once(CA_PATH.'vendor'.DS.'php-activerecord'.
 ActiveRecord\Config::initialize(function($cfg){
     $cfg->set_model_directory(CA_MD_PATH);
     $cfg->set_connections(array(
-        'development' => 'mysql://root:@localhost/ca'));
+        'development' => 'mysql://root:@localhost/turismo'));
 
     $cfg->set_default_connection('development');
 });

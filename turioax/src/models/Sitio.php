@@ -1,14 +1,14 @@
 <?php
-class Sample extends ActiveRecord\Model{
-    static $table_name = 'sample';
+class Sitio extends ActiveRecord\Model{
+    static $table_name = 'sitio';
 
     static $has_many = array(
-        array('carreras', 'class_name' => 'Carrera'),
-        array('profesores', 'class_name' => 'Profesor')
+ //       array('carreras', 'class_name' => 'Carrera'),
+  //      array('profesores', 'class_name' => 'Profesor')
     );
 
     static $belongs_to = array(
-        array('institucion')
+ //       array('institucion')
     );
 
     static $validates_presence_of = array(
@@ -18,28 +18,72 @@ class Sample extends ActiveRecord\Model{
         array('nombre', 'message' => VUNICO)    // Puede ser 'Debe ser unico'
     );
 
-    static $order = array('nombre', 'instituto_id', 'tipo', 'color');   // Orden de los campos y 
-                                                                        // y si aparecen o no.
+    static $order = array('region_id', 'ciudad_id', 'nombre',
+        'descripcion', 'telefono', 'correo', 'url', 'direccion',
+        'latitud', 'longitud', 'observaciones', 'referencia'); 
 
-    // Fields metadata
+
     static $meta = array(
+        'region_id' => array(
+            'type' => 'relation',
+            'fname' => 'Regi&oacute;n',
+            'tip'  => '',
+            'values' => '_region_id_values'),
+        'ciudad_id' => array(
+            'type' => 'relation',
+            'fname' => 'Ciudad',
+            'tip'  => '',
+            'values' => '_ciudad_id_values'),
         'nombre' => array(
             'autofocus' => true,
+            'fname' => 'Nombre',
             'type' => 'text',
             'hidden' => false),
-        'tipo' => array(
-            'values' => array(
-                array(1, 'Lic'),
-                array(2, 'Maestria'),
-                array(3, 'Docto')),
-            //'values' => '_tipo_values',    // Ver metodo _tipo_values
-            'fname' => 'Tipo de Carrera',   // Friendly name
-            'type' => 'text'),
-        'instituto_id' => array(
-            'type' => 'relation',
-            'fname' => 'Instituto!!!',
-            'tip'  => 'Seleccione el instituto al que pertenece la carrera',
-            'values' => '_instituto_id_values')
+        'telefono' => array(
+            'default' => '',
+            'fname' => 'Telefono',
+            'type' => 'text',
+            'hidden' => false),
+        'direccion' => array(
+            'default' => '',
+            'fname' => 'Direcci&oacute;n',
+            'type' => 'text',
+            'hidden' => false),
+        'correo' => array(
+            'default' => '',
+            'fname' => 'Correo',
+            'type' => 'text',
+            'hidden' => false),
+        'url' => array(
+            'default' => '',
+            'fname' => 'URL',
+            'type' => 'text',
+            'hidden' => false),
+        'latitud' => array(
+            'default' => 0.0,
+            'fname' => 'Latitud',
+            'type' => 'text',
+            'hidden' => false),
+        'longitud' => array(
+            'default' => 0.0,
+            'fname' => 'Longitud',
+            'type' => 'text',
+            'hidden' => false),
+        'descripcion' => array(
+            'default' => '',
+            'fname' => 'Descripci&oacute;n',
+            'type' => 'textarea',
+            'hidden' => false),
+        'observaciones' => array(
+            'default' => '',
+            'fname' => 'Observaciones',
+            'type' => 'textarea',
+            'hidden' => false),
+        'referencia' => array(
+            'default' => '',
+            'fname' => 'Referencia',
+            'type' => 'text',
+            'hidden' => false)
 
 //        '_id' => array(
 //            'type' => 'relation',
@@ -48,13 +92,16 @@ class Sample extends ActiveRecord\Model{
 //            'values' => '__id_values'),
     );
 
-    static function _instituto_id_values(){
-        $values = array();
-        $ins = Instituto::find('all');
-        foreach ($ins as $in){
-            $values[] = array($in->id, $in->nombre);
-        }
-        return $values;
+    static function _region_id_values(){
+        return values_from_class('Ciudad');
+    }
+
+    static function _ciudad_id_values(){
+        return values_from_class('Ciudad');
+    }
+
+    function get__name(){
+        return $this->nombre;
     }
 
 
